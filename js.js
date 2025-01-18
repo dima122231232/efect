@@ -86,8 +86,8 @@ const moveCircleAway = (e, circleData) => {
         circleData.distancey += centerY - cord.clientY;
         circleData.distancex -= index * 0.2;
     }
-    circleData.distancex = Math.max(-index * 50, Math.min(index * 50, circleData.distancex));
-    circleData.distancey = Math.max(-index * 50, Math.min(index * 50, circleData.distancey));
+    circleData.distancex = Math.max(-index * 65, Math.min(index * 65, circleData.distancex));
+    circleData.distancey = Math.max(-index * 65, Math.min(index * 65, circleData.distancey));
 
     gsap.to(circle, {
         duration: speed,
