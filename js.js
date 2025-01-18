@@ -2,7 +2,7 @@ const index = window.innerWidth / 100 + window.innerHeight / 100;
 
 function updateBlur() {
     var width = window.innerWidth;
-    var blurValue = Math.max(0, width / 0);
+    var blurValue = Math.max(15, width / 40);
     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
 }
 window.addEventListener('resize', updateBlur);
