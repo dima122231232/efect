@@ -43,7 +43,7 @@
     border-radius: 50%;
     position: absolute;
     will-change: transform;
-    filter: blur(1px);
+    filter: blur(2px);
   }
   .circle.iphone {
     /* filter: blur(10px); */
