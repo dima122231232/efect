@@ -43,7 +43,7 @@
     border-radius: 50%;
     position: absolute;
     will-change: transform;
-    filter: blur(10px);
+    filter: blur(2px);
   }
   .circle.iphone {
     filter: blur(10px);
@@ -78,7 +78,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: black;
+    /* background-color: black; */
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;
