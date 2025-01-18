@@ -2,7 +2,7 @@ const index = window.innerWidth / 100 + window.innerHeight / 100;
 
 function updateBlur() {
     var width = window.innerWidth;
-    var blurValue = Math.max(15, width / 40);
+    var blurValue = Math.max(0, width / 0);
     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
 }
 window.addEventListener('resize', updateBlur);
@@ -86,8 +86,8 @@ const moveCircleAway = (e, circleData) => {
         circleData.distancey += centerY - cord.clientY;
         circleData.distancex -= index * 0.2;
     }
-    circleData.distancex = Math.max(-index * 83, Math.min(index * 83, circleData.distancex));
-    circleData.distancey = Math.max(-index * 83, Math.min(index * 83, circleData.distancey));
+    circleData.distancex = Math.max(-index * 50, Math.min(index * 50, circleData.distancex));
+    circleData.distancey = Math.max(-index * 50, Math.min(index * 50, circleData.distancey));
 
     gsap.to(circle, {
         duration: speed,
