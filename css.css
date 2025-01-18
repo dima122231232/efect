@@ -46,7 +46,7 @@
     filter: blur(2px);
   }
   .circle.iphone {
-    filter: blur(10px);
+    filter: blur(2px);
 }
   .circle div {
     background-color: var(--circle-color);
