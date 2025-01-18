@@ -1,12 +1,12 @@
 const index = window.innerWidth / 100 + window.innerHeight / 100;
 
-// function updateBlur() {
-//     var width = window.innerWidth;
-//     var blurValue = Math.max(15, width / 40);
-//     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
-// }
-// window.addEventListener('resize', updateBlur);
-// window.addEventListener('load', updateBlur);
+function updateBlur() {
+    var width = window.innerWidth;
+    var blurValue = Math.max(15, width / 40);
+    document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
+}
+window.addEventListener('resize', updateBlur);
+window.addEventListener('load', updateBlur);
 
 const circless = document.querySelectorAll('.circle');
 function getRandomPosition() {
@@ -194,3 +194,8 @@ setInterval(() => {
         }
     });
 }, 0);
+if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.querySelectorAll('.circle').forEach(circle => {
+        circle.classList.add('iphone');
+    });
+}
