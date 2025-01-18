@@ -9,19 +9,22 @@
 <body>
     <div id="cursor"></div>
     <div class="gradient-bg">
-        <svg xmlns="http://www.w3.org/2000/svg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100vw" height="100vh">
             <defs>
-              <filter id="goo">
-                <feGaussianBlur id="blur-effect" in="SourceGraphic" stdDeviation="40" result="blur" />
-                <feColorMatrix in="blur" mode="matrix"
-                  values="1 0 0 0 0
-                          0 1 0 0 0
-                          0 0 1 0 0
-                          0 0 0 18 -7" result="goo" />
-                <feBlend in="SourceGraphic" in2="goo" />
-              </filter>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix"
+                        values="1 0 0 0 0
+                                0 1 0 0 0
+                                0 0 1 0 0
+                                0 0 0 18 -7" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
             </defs>
-          </svg>
+            <foreignObject x="0" y="0" width="100%" height="100%">
+                <div class="circles-container" style="filter: url(#goo);"></div>
+            </foreignObject>
+        </svg>
         <div class="circles-container">
             <div class="circle circle1"><div></div></div>
             <div class="circle circle2"><div></div></div>
