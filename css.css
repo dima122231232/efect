@@ -43,6 +43,7 @@
     height: var(--circle-size);
     border-radius: 50%;
     position: absolute;
+    will-change: transform;
 
    
   }
@@ -52,6 +53,7 @@
     height: 100%;
     border-radius: 50%;
     pointer-events: none;
+    will-change: transform;
 }
   .circle2{
     width: calc(var(--circle-size) * 1.1);
@@ -74,21 +76,14 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-/*     background-color: black; */
+    background-color: black;
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;
 
   }
-  
-  @keyframes moveGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+}

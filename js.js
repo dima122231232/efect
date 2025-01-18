@@ -150,23 +150,26 @@ document.addEventListener('mousemove', (e) => {
 
 // Обработчик для касания на мобильных устройствах
 document.addEventListener('touchmove', (e) => {
-    e.preventDefault();  // Предотвращаем прокрутку
+    e.preventDefault();
     const cursor = document.getElementById('cursor');
-    cursorX = e.touches[0].clientX;  // Координаты касания по оси X
-    cursorY = e.touches[0].clientY;  // Координаты касания по оси Y
-    cursor.style.left = `${cursorX}px`;  // Обновляем позицию курсора
-    cursor.style.top = `${cursorY}px`;   // Обновляем позицию курсора
+    cursorX = e.touches[0].clientX;
+    cursorY = e.touches[0].clientY;
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
 }, { passive: false });
+
+// Блокировка горизонтальной прокрутки
+document.body.style.overflowX = 'hidden';
 
 // Интервал для перемещения кругов
 setInterval(() => {
-    const e = { clientX: cursorX, clientY: cursorY };  // Создаем объект с координатами
-    const cursorOnCircles = checkCursorInsideAnyCircle(e);  // Проверяем, находится ли курсор внутри круга
+    const e = { clientX: cursorX, clientY: cursorY };
+    const cursorOnCircles = checkCursorInsideAnyCircle(e);
 
     circles.forEach((circleData, index) => {
         const { circle, flag, cord } = circleData;
 
-        const rect = circle.getBoundingClientRect();  // Получаем размеры круга
+        const rect = circle.getBoundingClientRect();
         const cursorNearby = (
             e.clientX >= rect.left - index * 1 && e.clientX <= rect.right + index * 1 &&
             e.clientY >= rect.top - index * 1 && e.clientY <= rect.bottom + index * 1
@@ -176,7 +179,7 @@ setInterval(() => {
             if (flag) {
                 circleData.cord = { clientX: e.clientX, clientY: e.clientY };
                 circleData.flag = false;
-                moveCircleAway(e, circleData);  // Перемещаем круг
+                moveCircleAway(e, circleData);
             } else if (cord) {
                 moveCircleAway(e, circleData);
             }
@@ -187,7 +190,7 @@ setInterval(() => {
         } else {
             circleData.flag = true;
             circleData.cord = null;
-            returnCircle(circleData);  // Возвращаем круг на исходную позицию
+            returnCircle(circleData);
         }
     });
 }, 0);
