@@ -144,9 +144,9 @@ let moveTimeout;
 document.addEventListener('mousemove', (e) => {
     clearTimeout(moveTimeout);
     oo = true;
-    moveTimeout = setTimeout(() => {
-        oo = false;
-    }, 10);
+    // moveTimeout = setTimeout(() => {
+    //     oo = false;
+    // }, 10);
 
     const cursor = document.getElementById('cursor');
     cursorX = e.clientX;
@@ -166,7 +166,7 @@ document.addEventListener('touchmove', (e) => {
 }, { passive: false });
 
 document.addEventListener('touchend', () => {
-  oo = false;
+//   oo = false;
 });
 
 document.body.style.overflowX = 'hidden';
@@ -211,4 +211,4 @@ setInterval(() => {
             }
         }
     });
-}, 16);
+}, 1);
