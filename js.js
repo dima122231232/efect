@@ -118,7 +118,7 @@ const returnCircle = (circleData) => {
         ease: 'linear'
     });
 };
-
+let oo = true;
 const checkCursorInsideAnyCircle = (e) => {
     let cursorOnCircles = [];
     circles.forEach(({ circle }, index) => {
@@ -131,7 +131,7 @@ const checkCursorInsideAnyCircle = (e) => {
             cursorRect.bottom >= rect.top &&
             cursorRect.top <= rect.bottom;
 
-        if (isCursorInside) {
+        if (isCursorInside && oo) {
             cursorOnCircles.push(index);
         }
     });
@@ -150,6 +150,7 @@ document.addEventListener('mousemove', (e) => {
 
 // Обработчик для касания на мобильных устройствах
 document.addEventListener('touchmove', (e) => {
+    oo = true;
     e.preventDefault();
     const cursor = document.getElementById('cursor');
     cursorX = e.touches[0].clientX;
@@ -157,7 +158,9 @@ document.addEventListener('touchmove', (e) => {
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
 }, { passive: false });
-
+document.addEventListener('touchend', () => {
+  oo = false;
+});
 // Блокировка горизонтальной прокрутки
 document.body.style.overflowX = 'hidden';
 
@@ -176,14 +179,14 @@ setInterval(() => {
         );
 
         if (cursorOnCircles.includes(index)) {
-            if (flag) {
+            if (flag && oo) {
                 circleData.cord = { clientX: e.clientX, clientY: e.clientY };
                 circleData.flag = false;
                 moveCircleAway(e, circleData);
-            } else if (cord) {
+            } else if (cord && oo) {
                 moveCircleAway(e, circleData);
             }
-        } else if (cursorNearby) {
+        } else if (cursorNearby && oo) {
             circleData.cord = { clientX: e.clientX, clientY: e.clientY };
             circleData.flag = false;
             moveCircleAway(e, circleData);
@@ -194,8 +197,3 @@ setInterval(() => {
         }
     });
 }, 0);
-if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    document.querySelectorAll('.circle').forEach(circle => {
-        circle.classList.add('iphone');
-    });
-}
