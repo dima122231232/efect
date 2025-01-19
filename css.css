@@ -83,7 +83,7 @@
     width:calc(var(--index)*8);
     height:calc(var(--index)*8);
     border-radius: 50%;
-    background-color: #f80000;
+    background-color: #550000;
     left: -5000px;
     pointer-events: none;
     transform: translate(-50%, -50%);

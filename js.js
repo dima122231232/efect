@@ -200,8 +200,12 @@ setInterval(() => {
         } else {
             circleData.flag = true;
             circleData.cord = null;
-            if(checkCursorInRed2.includes(index)){}
-            else{returnCircle(circleData);}
+            const screenWidth = window.innerWidth;
+            if(screenWidth<911){returnCircle(circleData);}
+            else{
+                if(checkCursorInRed2.includes(index)){}
+                else{returnCircle(circleData);}
+            }
         }
     });
 }, 1);
