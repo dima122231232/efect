@@ -70,8 +70,8 @@
 .circle10{margin-left:calc( var(--index)*.5); } */
   #cur {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: var(--index);
+    height: var(--index);
     border-radius: 50%;
     background-color: #000;
     pointer-events: none;
@@ -80,8 +80,8 @@
   }
   #cursor {
     position: absolute;
-    width:240px;
-    height:240px;
+    width:calc(var(--index)*8);
+    height:calc(var(--index)*8);
     border-radius: 50%;
     background-color: #550000;
     left: -5000px;

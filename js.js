@@ -2,18 +2,18 @@ const index = window.innerWidth / 100 + window.innerHeight / 100;
 let isAnimating = true;
 
 function updateBlur() {
-    var width = window.innerWidth,blurValue = Math.max(15, width / 40);
+    var width = window.innerWidth, blurValue = Math.max(15, width / 40);
     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
 }
 window.addEventListener('resize', updateBlur);
 window.addEventListener('load', updateBlur);
 
 const circless = document.querySelectorAll('.circle');
-function getRandomScale() {return 1 + Math.random() * 1;}
-function getRandomMargin() {return (Math.random() - 0.5) * index*35; }
+function getRandomScale() { return 1 + Math.random() * 1; }
+function getRandomMargin() { return (Math.random() - 0.5) * index * 35; }
 circless.forEach((circle, index) => {
     function animate() {
-        gsap.to(circle, {scale: getRandomScale(),marginRight: getRandomMargin() + "px", marginTop: getRandomMargin() + "px",duration: 1 + index * 0.1,repeat: 0, ease: "power1.inOut",onComplete: animate });
+        gsap.to(circle, { scale: getRandomScale(), marginRight: getRandomMargin() + "px", marginTop: getRandomMargin() + "px", duration: 1 + index * 0.1, repeat: 0, ease: "power1.inOut", onComplete: animate });
     }
     animate();
 });
@@ -34,7 +34,7 @@ const circles = [
     { circle: document.querySelector('.circle7'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
     { circle: document.querySelector('.circle8'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
     { circle: document.querySelector('.circle9'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
-    { circle: document.querySelector('.circle10'),flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle10'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
 ];
 
 let speed = .75;
@@ -59,7 +59,7 @@ const moveCircleAway = (e, circleData) => {
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
 
     circleData.plusKvadro = 0;
-    
+
     gsap.to(circle, {
         duration: speed,
         x: circleData.distancex,
@@ -67,6 +67,7 @@ const moveCircleAway = (e, circleData) => {
         ease: 'linear',
     });
 };
+
 let canUpdatePlusKvadro = true;
 
 const returnCircle = (circleData) => {
@@ -76,8 +77,8 @@ const returnCircle = (circleData) => {
         if (Math.abs(circleData[axis]) <= index) {
             circleData[axis] = 0;
         } else {
-            circleData[axis] += circleData[axis] > 0 
-                ? -index * circleData.plusKvadro 
+            circleData[axis] += circleData[axis] > 0
+                ? -index * circleData.plusKvadro
                 : index * circleData.plusKvadro;
 
             if (circleData.canUpdatePlusKvadro) {
@@ -98,9 +99,8 @@ const returnCircle = (circleData) => {
     });
 };
 
-
-
 let oo = true;
+
 const checkCursorInsideAnyCircle = (e) => {
     let cursorOnCircles = [];
     circles.forEach(({ circle }, index) => {
@@ -119,6 +119,7 @@ const checkCursorInsideAnyCircle = (e) => {
 
     return cursorOnCircles;
 };
+
 const checkCursorInRed = (e) => {
     let cursorOnCirclesRed = [];
     circles.forEach(({ circle }, index) => {
@@ -138,7 +139,6 @@ const checkCursorInRed = (e) => {
     return cursorOnCirclesRed;
 };
 
-
 let moveTimeout;
 
 document.addEventListener('mousemove', (e) => {
@@ -155,7 +155,6 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = `${cursorY}px`;
 });
 
-
 document.addEventListener('touchmove', (e) => {
     oo = true;
     e.preventDefault();
@@ -165,12 +164,12 @@ document.addEventListener('touchmove', (e) => {
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
 }, { passive: false });
+
 document.addEventListener('touchend', () => {
   oo = false;
 });
 
 document.body.style.overflowX = 'hidden';
-
 
 setInterval(() => {
     const e = { clientX: cursorX, clientY: cursorY };
@@ -201,10 +200,14 @@ setInterval(() => {
             circleData.flag = true;
             circleData.cord = null;
             const screenWidth = window.innerWidth;
-            if(screenWidth<911){returnCircle(circleData);}
-            else{
-                if(checkCursorInRed2.includes(index)){}
-                else{returnCircle(circleData);}
+            if (screenWidth < 911) {
+                returnCircle(circleData);
+            } else {
+                if (checkCursorInRed2.includes(index)) {
+                    // No action for this condition
+                } else {
+                    returnCircle(circleData);
+                }
             }
         }
     });
