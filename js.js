@@ -16,15 +16,15 @@ function getRandomScale() {
     return 1 + Math.random() * 0.8;
 }
 
-// function getRandomMargin() {
-//     return (Math.random() - 0.5) * index*5; // Значения от -50 до 50
-// }
+function getRandomMargin() {
+    return (Math.random() - 0.5) * index*5; // Значения от -50 до 50
+}
 circless.forEach((circle, index) => {
     function animate() {
         gsap.to(circle, {
-            scale: getRandomScale(), // Случайный масштаб
-            // marginRight: getRandomMargin() + "px", // Случайный margin-right
-            // marginBottom: getRandomMargin() + "px", // Случайный margin-bottom
+            scale: getRandomScale(),
+            marginRight: getRandomMargin() + "px", // Случайный margin-right
+            marginTop: getRandomMargin() + "px", // Случайный margin-bottom
             duration: 1 + index * 0.1,
             repeat: 0, // Одна итерация за раз
             ease: "power1.inOut",
