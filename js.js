@@ -1,38 +1,21 @@
 const index = window.innerWidth / 100 + window.innerHeight / 100;
+let isAnimating = true;
 
 function updateBlur() {
-    var width = window.innerWidth;
-    var blurValue = Math.max(15, width / 40);
+    var width = window.innerWidth,blurValue = Math.max(15, width / 40);
     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
 }
 window.addEventListener('resize', updateBlur);
 window.addEventListener('load', updateBlur);
 
 const circless = document.querySelectorAll('.circle');
-// function getRandomPosition() {
-//     return (Math.random() - 0.5) * 6 * index;
-// }
-function getRandomScale() {
-    return 1 + Math.random() * 0.8;
-}
-
-function getRandomMargin() {
-    return (Math.random() - 0.5) * index*5; // Значения от -50 до 50
-}
+function getRandomScale() {return 1 + Math.random() * 1;}
+function getRandomMargin() {return (Math.random() - 0.5) * index*35; }
 circless.forEach((circle, index) => {
     function animate() {
-        gsap.to(circle, {
-            scale: getRandomScale(),
-            marginRight: getRandomMargin() + "px", // Случайный margin-right
-            marginTop: getRandomMargin() + "px", // Случайный margin-bottom
-            duration: 1 + index * 0.1,
-            repeat: 0, // Одна итерация за раз
-            ease: "power1.inOut",
-            onComplete: animate // Запуск анимации снова
-        });
+        gsap.to(circle, {scale: getRandomScale(),marginRight: getRandomMargin() + "px", marginTop: getRandomMargin() + "px",duration: 1 + index * 0.1,repeat: 0, ease: "power1.inOut",onComplete: animate });
     }
-
-    animate(); // Запуск начальной анимации
+    animate();
 });
 
 document.addEventListener('mousemove', function (event) {
@@ -42,19 +25,19 @@ document.addEventListener('mousemove', function (event) {
 });
 
 const circles = [
-    { circle: document.querySelector('.circle1'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle2'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle3'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle4'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle5'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle6'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle7'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle8'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle9'), flag: true, cord: null, distancex: 0, distancey: 0 },
-    { circle: document.querySelector('.circle10'), flag: true, cord: null, distancex: 0, distancey: 0 },
+    { circle: document.querySelector('.circle1'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle2'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle3'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle4'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle5'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle6'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle7'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle8'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle9'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
+    { circle: document.querySelector('.circle10'),flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
 ];
 
-let speed = .55;
+let speed = .75;
 let cursorX = 0,
     cursorY = 0;
 
@@ -67,14 +50,15 @@ const moveCircleAway = (e, circleData) => {
     const offsetY = circle.getBoundingClientRect().top + circle.offsetHeight / 2 - centerY;
     const angle = Math.atan2(offsetY, offsetX);
 
-    circleData.distancex += (centerX - cord.clientX)/2;
-    circleData.distancey += (centerY - cord.clientY)/2;
- console.log(centerX);
- 
+    circleData.distancex += (centerX - cord.clientX);
+    circleData.distancey += (centerY - cord.clientY);
+
     const screenWidth = window.innerWidth;
-    const limit = screenWidth < 991 ? index * 150 : index * 120;
+    const limit = screenWidth < 991 ? index * 65 : index * 45;
     circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
+
+    circleData.plusKvadro = 0;
     
     gsap.to(circle, {
         duration: speed,
@@ -83,35 +67,45 @@ const moveCircleAway = (e, circleData) => {
         ease: 'linear',
     });
 };
+let canUpdatePlusKvadro = true;
 
 const returnCircle = (circleData) => {
     const { circle } = circleData;
 
-    if (circleData.distancex > 0) {
-        circleData.distancex -= index * 1;
-    } else if (circleData.distancex < 0) {
-        circleData.distancex += index * 1;
-    }
-    if (circleData.distancey > 0) {
-        circleData.distancey -= index * 1;
-    } else if (circleData.distancey < 0) {
-        circleData.distancey += index * 1;
-    }
+    ['distancex', 'distancey'].forEach((axis) => {
+        if (Math.abs(circleData[axis]) <= index) {
+            circleData[axis] = 0;
+        } else {
+            circleData[axis] += circleData[axis] > 0 
+                ? -index * circleData.plusKvadro 
+                : index * circleData.plusKvadro;
+
+            if (circleData.canUpdatePlusKvadro) {
+                circleData.plusKvadro += 0.025;
+                circleData.canUpdatePlusKvadro = false;
+                setTimeout(() => {
+                    circleData.canUpdatePlusKvadro = true;
+                }, 100);
+            }
+        }
+    });
 
     gsap.to(circle, {
         duration: speed,
         x: circleData.distancex,
         y: circleData.distancey,
-        ease: 'none'
+        ease: 'none',
     });
 };
+
+
+
 let oo = true;
 const checkCursorInsideAnyCircle = (e) => {
     let cursorOnCircles = [];
     circles.forEach(({ circle }, index) => {
         const rect = circle.getBoundingClientRect();
-        const cursorRect = document.getElementById('cursor').getBoundingClientRect();
-
+        const cursorRect = document.getElementById('cur').getBoundingClientRect();
         const isCursorInside =
             cursorRect.right >= rect.left &&
             cursorRect.left <= rect.right &&
@@ -125,6 +119,25 @@ const checkCursorInsideAnyCircle = (e) => {
 
     return cursorOnCircles;
 };
+const checkCursorInRed = (e) => {
+    let cursorOnCirclesRed = [];
+    circles.forEach(({ circle }, index) => {
+        const rect = circle.getBoundingClientRect();
+        const cursorRect2 = document.getElementById('cursor').getBoundingClientRect();
+        const isCursorInside2 =
+            cursorRect2.right >= rect.left &&
+            cursorRect2.left <= rect.right &&
+            cursorRect2.bottom >= rect.top &&
+            cursorRect2.top <= rect.bottom;
+
+        if (isCursorInside2 && oo) {
+            cursorOnCirclesRed.push(index);
+        }
+    });
+
+    return cursorOnCirclesRed;
+};
+
 
 let moveTimeout;
 
@@ -162,7 +175,7 @@ document.body.style.overflowX = 'hidden';
 setInterval(() => {
     const e = { clientX: cursorX, clientY: cursorY };
     const cursorOnCircles = checkCursorInsideAnyCircle(e);
-
+    const checkCursorInRed2 = checkCursorInRed(e);
     circles.forEach((circleData, index) => {
         const { circle, flag, cord } = circleData;
 
@@ -187,7 +200,8 @@ setInterval(() => {
         } else {
             circleData.flag = true;
             circleData.cord = null;
-            returnCircle(circleData);
+            if(checkCursorInRed2.includes(index)){}
+            else{returnCircle(circleData);}
         }
     });
-}, 16);
+}, 1);

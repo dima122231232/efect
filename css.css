@@ -53,30 +53,44 @@
     border-radius: 50%;
     pointer-events: none;
     will-change: transform;
+    display: block;
 }
-  .circle2{width: calc(var(--circle-size) * 1.1);height: calc(var(--circle-size) * 1.1);margin-left:calc(var(--circle-size) * 2.5);}
+.circle2 div{display: block;}
+  /* .circle2{margin-left:calc( var(--index)*10); width: calc(var(--circle-size) * 1.1);height: calc(var(--circle-size) * 1.1);}
   .circle3{width: calc(var(--circle-size) *.9);height: calc(var(--circle-size) * .9);}
-  .circle4{ margin-left:calc( var(--index)*3); width: calc(var(--circle-size) * 1.2);height: calc(var(--circle-size) * 1.1);}
-  .circle5{margin-left:calc( var(--index)*-3); width: calc(var(--circle-size) * .7);height: calc(var(--circle-size) * .7);}
-  .circle6{margin-left:calc( var(--index)*2.7); }
+  .circle4{ margin-left:calc( var(--index)*8); width: calc(var(--circle-size) * 1.2);height: calc(var(--circle-size) * 1.1);}
+  .circle5{margin-left:calc( var(--index)*-10); width: calc(var(--circle-size) * .7);height: calc(var(--circle-size) * .7);}
+  .circle6{margin-left:calc( var(--index)*9); }
   .circle7{
     width: calc(var(--circle-size) * 1.1);
     height: calc(var(--circle-size) * 1.1);
-    margin-left:calc( var(--index)*-5.7);
+    margin-left:calc( var(--index)*-8);
 }
-.circle9{margin-left:calc( var(--index)*-2.5); }
-.circle10{margin-left:calc( var(--index)*.5); }
+.circle9{margin-left:calc( var(--index)*-9); }
+.circle10{margin-left:calc( var(--index)*.5); } */
+  #cur {
+    position: absolute;
+    width: var(--index);
+    height: var(--index);
+    border-radius: 50%;
+    /* background-color: #000; */
+    pointer-events: none;
+   
+    z-index: 100;
+  }
   #cursor {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width:calc(var(--index)*8);
+    height:calc(var(--index)*8);
     border-radius: 50%;
-    background-color: #000;
+    /* background-color: #f80000; */
     left: -5000px;
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   html, body {
     overscroll-behavior: none;
