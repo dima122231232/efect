@@ -54,7 +54,7 @@ const moveCircleAway = (e, circleData) => {
     circleData.distancey += (centerY - cord.clientY);
 
     const screenWidth = window.innerWidth;
-    const limit = screenWidth < 991 ? index * 65 : index * 45;
+    const limit = screenWidth < 991 ? index * 55 : index * 35;
     circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
 
