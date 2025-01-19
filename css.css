@@ -70,20 +70,20 @@
 .circle10{margin-left:calc( var(--index)*.5); } */
   #cur {
     position: absolute;
-    width: var(--index);
-    height: var(--index);
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    /* background-color: #000; */
+    background-color: #000;
     pointer-events: none;
    
     z-index: 100;
   }
   #cursor {
     position: absolute;
-    width:calc(var(--index)*8);
-    height:calc(var(--index)*8);
+    width:240px;
+    height:240px;
     border-radius: 50%;
-    /* background-color: #550000; */
+    background-color: #550000;
     left: -5000px;
     pointer-events: none;
     transform: translate(-50%, -50%);
