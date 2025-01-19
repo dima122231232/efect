@@ -86,8 +86,10 @@ const moveCircleAway = (e, circleData) => {
         circleData.distancey += centerY - cord.clientY;
         circleData.distancex -= index * 0.2;
     }
-    circleData.distancex = Math.max(-index * 65, Math.min(index * 65, circleData.distancex));
-    circleData.distancey = Math.max(-index * 65, Math.min(index * 65, circleData.distancey));
+    const screenWidth = window.innerWidth;
+    const limit = screenWidth < 991 ? index * 85 : index * 65;
+    circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
+    circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
 
     gsap.to(circle, {
         duration: speed,
@@ -139,8 +141,15 @@ const checkCursorInsideAnyCircle = (e) => {
     return cursorOnCircles;
 };
 
-// Обработчик для мыши
+let moveTimeout;
+
 document.addEventListener('mousemove', (e) => {
+    clearTimeout(moveTimeout);
+    oo = true;
+    moveTimeout = setTimeout(() => {
+        oo = false;
+    }, 200);
+
     const cursor = document.getElementById('cursor');
     cursorX = e.clientX;
     cursorY = e.clientY;
@@ -148,7 +157,7 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = `${cursorY}px`;
 });
 
-// Обработчик для касания на мобильных устройствах
+
 document.addEventListener('touchmove', (e) => {
     oo = true;
     e.preventDefault();
@@ -161,10 +170,10 @@ document.addEventListener('touchmove', (e) => {
 document.addEventListener('touchend', () => {
   oo = false;
 });
-// Блокировка горизонтальной прокрутки
+
 document.body.style.overflowX = 'hidden';
 
-// Интервал для перемещения кругов
+
 setInterval(() => {
     const e = { clientX: cursorX, clientY: cursorY };
     const cursorOnCircles = checkCursorInsideAnyCircle(e);
