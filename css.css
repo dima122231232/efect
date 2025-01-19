@@ -73,7 +73,7 @@
     width: var(--index);
     height: var(--index);
     border-radius: 50%;
-    /* background-color: #000; */
+    background-color: #000;
     pointer-events: none;
    
     z-index: 100;
@@ -83,7 +83,7 @@
     width:calc(var(--index)*8);
     height:calc(var(--index)*8);
     border-radius: 50%;
-    /* background-color: #f80000; */
+    background-color: #f80000;
     left: -5000px;
     pointer-events: none;
     transform: translate(-50%, -50%);
