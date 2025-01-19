@@ -9,34 +9,30 @@ window.addEventListener('resize', updateBlur);
 window.addEventListener('load', updateBlur);
 
 const circless = document.querySelectorAll('.circle');
-function getRandomPosition() {
-    return (Math.random() - 0.5) * 6 * index;
-}
+// function getRandomPosition() {
+//     return (Math.random() - 0.5) * 6 * index;
+// }
 function getRandomScale() {
-    return 1 + Math.random() * .5;
+    return 1 + Math.random() * 0.8;
 }
+
+// function getRandomMargin() {
+//     return (Math.random() - 0.5) * index*5; // Значения от -50 до 50
+// }
 circless.forEach((circle, index) => {
-    const innerDiv = circle.querySelector('div');
-
     function animate() {
-        gsap.to(innerDiv, {
-            x: getRandomPosition(),
-            y: getRandomPosition(),
-            duration: 1.5 + index * 0.1,
-            repeat: 0,
-            ease: "power1.inOut",
-            onComplete: animate
-        });
-
         gsap.to(circle, {
-            scale: getRandomScale(),
-            duration: 1.5 + index * 0.1,
-            repeat: 0,
-            ease: "power1.inOut"
+            scale: getRandomScale(), // Случайный масштаб
+            // marginRight: getRandomMargin() + "px", // Случайный margin-right
+            // marginBottom: getRandomMargin() + "px", // Случайный margin-bottom
+            duration: 1 + index * 0.1,
+            repeat: 0, // Одна итерация за раз
+            ease: "power1.inOut",
+            onComplete: animate // Запуск анимации снова
         });
     }
 
-    animate();
+    animate(); // Запуск начальной анимации
 });
 
 document.addEventListener('mousemove', function (event) {
@@ -71,12 +67,12 @@ const moveCircleAway = (e, circleData) => {
     const offsetY = circle.getBoundingClientRect().top + circle.offsetHeight / 2 - centerY;
     const angle = Math.atan2(offsetY, offsetX);
 
-    circleData.distancex += (centerX - cord.clientX)/4;
-    circleData.distancey += (centerY - cord.clientY)/4;
+    circleData.distancex += (centerX - cord.clientX)/2;
+    circleData.distancey += (centerY - cord.clientY)/2;
  console.log(centerX);
  
     const screenWidth = window.innerWidth;
-    const limit = screenWidth < 991 ? index * 200 : index * 150;
+    const limit = screenWidth < 991 ? index * 150 : index * 120;
     circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
     

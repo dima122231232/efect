@@ -1,6 +1,6 @@
 :root {
     --index:calc(1vh + 1vw);
-    --circle-size:calc( var(--index)*9);
+    --circle-size:calc( var(--index)*8);
     --circle-color:#4cb1c2;
   }
 
