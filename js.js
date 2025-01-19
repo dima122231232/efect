@@ -13,7 +13,7 @@ function getRandomPosition() {
     return (Math.random() - 0.5) * 6 * index;
 }
 function getRandomScale() {
-    return 1 + Math.random() * 1.5;
+    return 1 + Math.random() * .5;
 }
 circless.forEach((circle, index) => {
     const innerDiv = circle.querySelector('div');
@@ -58,7 +58,7 @@ const circles = [
     { circle: document.querySelector('.circle10'), flag: true, cord: null, distancex: 0, distancey: 0 },
 ];
 
-let speed = 1.5;
+let speed = .55;
 let cursorX = 0,
     cursorY = 0;
 
@@ -71,26 +71,15 @@ const moveCircleAway = (e, circleData) => {
     const offsetY = circle.getBoundingClientRect().top + circle.offsetHeight / 2 - centerY;
     const angle = Math.atan2(offsetY, offsetX);
 
-    if (Math.cos(angle) > 0.5) {
-        circleData.distancex += centerX - cord.clientX;
-        circleData.distancey -= index * 0.8;
-    } else {
-        circleData.distancex += centerX - cord.clientX;
-        circleData.distancey += index * 0.2;
-    }
-
-    if (Math.sin(angle) > 0.5) {
-        circleData.distancey += centerY - cord.clientY;
-        circleData.distancex -= index * 0.8;
-    } else {
-        circleData.distancey += centerY - cord.clientY;
-        circleData.distancex -= index * 0.2;
-    }
+    circleData.distancex += (centerX - cord.clientX)/4;
+    circleData.distancey += (centerY - cord.clientY)/4;
+ console.log(centerX);
+ 
     const screenWidth = window.innerWidth;
-    const limit = screenWidth < 991 ? index * 85 : index * 65;
+    const limit = screenWidth < 991 ? index * 200 : index * 150;
     circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
-
+    
     gsap.to(circle, {
         duration: speed,
         x: circleData.distancex,
@@ -103,21 +92,21 @@ const returnCircle = (circleData) => {
     const { circle } = circleData;
 
     if (circleData.distancex > 0) {
-        circleData.distancex -= index * 0.8;
+        circleData.distancex -= index * 1;
     } else if (circleData.distancex < 0) {
-        circleData.distancex += index * 0.8;
+        circleData.distancex += index * 1;
     }
     if (circleData.distancey > 0) {
-        circleData.distancey -= index * 0.8;
+        circleData.distancey -= index * 1;
     } else if (circleData.distancey < 0) {
-        circleData.distancey += index * 0.8;
+        circleData.distancey += index * 1;
     }
 
     gsap.to(circle, {
         duration: speed,
         x: circleData.distancex,
         y: circleData.distancey,
-        ease: 'linear'
+        ease: 'none'
     });
 };
 let oo = true;
@@ -148,7 +137,7 @@ document.addEventListener('mousemove', (e) => {
     oo = true;
     moveTimeout = setTimeout(() => {
         oo = false;
-    }, 200);
+    }, 10);
 
     const cursor = document.getElementById('cursor');
     cursorX = e.clientX;
@@ -205,4 +194,4 @@ setInterval(() => {
             returnCircle(circleData);
         }
     });
-}, 0);
+}, 16);

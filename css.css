@@ -1,6 +1,6 @@
 :root {
     --index:calc(1vh + 1vw);
-    --circle-size:calc( var(--index)*6.66);
+    --circle-size:calc( var(--index)*9);
     --circle-color:#4cb1c2;
   }
 
@@ -56,12 +56,12 @@
   .circle2{
     width: calc(var(--circle-size) * 1.1);
     height: calc(var(--circle-size) * 1.1);
-    margin-left:calc(var(--circle-size) * 3);
+    margin-left:calc(var(--circle-size) * 2);
   }
-  .circle3{width: calc(var(--circle-size) * .9);height: calc(var(--circle-size) * .9);}
-  .circle4{ margin-left:calc( var(--index)*6.66); margin-top: calc( var(--index)*3.33); width: calc(var(--circle-size) * 1.2);height: calc(var(--circle-size) * 1.1);}
+  .circle3{width: calc(var(--circle-size) * .9);height: calc(var(--circle-size) * .9);margin-top: calc( var(--index)*-1.33)}
+  .circle4{ margin-left:calc( var(--index)*5.55); margin-top: calc( var(--index)*4.33); width: calc(var(--circle-size) * 1.2);height: calc(var(--circle-size) * 1.1);}
   .circle5{margin-left:calc( var(--index)*-3.33); margin-top: calc( var(--index)*2.33); width: calc(var(--circle-size) * .7);height: calc(var(--circle-size) * .7);}
-  .circle6{margin-left:calc( var(--index)*1.6); margin-top:calc( var(--index)*5);}
+  .circle6{margin-left:calc( var(--index)*1.6); margin-top:calc( var(--index)*5.5);}
   .circle7{
     width: calc(var(--circle-size) * 1.1);
     height: calc(var(--circle-size) * 1.1);
