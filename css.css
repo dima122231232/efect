@@ -7,12 +7,12 @@
   body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background: #00173e;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 200vh;
+    overflow-x: hidden;
   }
   
   .gradient-bg {
@@ -45,6 +45,7 @@
     position: absolute;
     will-change: transform;
     /* filter: blur(1.5px); */
+    
   }
   .circle div {
     position: absolute;
@@ -70,6 +71,7 @@
     height:calc(var(--index)*8);
     border-radius: 50%;
     left: -5000px;
+    background-color: blueviolet;
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;

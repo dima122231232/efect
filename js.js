@@ -158,7 +158,9 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('touchmove', (e) => {
     oo = true;
-    // e.preventDefault();
+    if (Math.abs(e.touches[0].pageX - cursorMetabollX) > Math.abs(e.touches[0].pageY - cursorMetabollY)) {
+        e.preventDefault();  // Предотвращаем прокрутку по оси X
+    }
     const cursorMetaboll = document.getElementById('cursor-metaboll');
     cursorMetabollX = e.touches[0].pageX;
     cursorMetabollY = e.touches[0].pageY;
