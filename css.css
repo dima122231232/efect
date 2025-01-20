@@ -1,6 +1,6 @@
 :root {
     --index:calc(1vh + 1vw);
-    --circle-size:calc( var(--index)*8);
+    --circle-size:calc( var(--index)*7);
     --circle-color:#4cb1c2;
   }
 
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 500vh;
   }
   
   .gradient-bg {
@@ -35,6 +35,7 @@
     align-items: center;
     filter: url(#goo);
     position: relative;
+    overflow: hidden;
   }
   
   .circle {
@@ -43,7 +44,7 @@
     border-radius: 50%;
     position: absolute;
     will-change: transform;
-    filter: blur(1.5px);
+    /* filter: blur(1.5px); */
   }
   .circle div {
     position: absolute;
@@ -63,7 +64,7 @@
     pointer-events: none;
     z-index: 100;
   }
-  #cursor {
+  #cursor-metaboll {
     position: absolute;
     width:calc(var(--index)*8);
     height:calc(var(--index)*8);

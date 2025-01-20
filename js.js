@@ -1,8 +1,7 @@
 const index = window.innerWidth / 100 + window.innerHeight / 100;
-let isAnimating = true;
 
 function updateBlur() {
-    var width = window.innerWidth, blurValue = Math.max(15, width / 40);
+    var width = window.innerWidth, blurValue = Math.max(10, width / 40);
     document.getElementById('blur-effect').setAttribute('stdDeviation', blurValue);
 }
 window.addEventListener('resize', updateBlur);
@@ -10,7 +9,7 @@ window.addEventListener('load', updateBlur);
 
 const circless = document.querySelectorAll('.circle');
 function getRandomScale() { return 1 + Math.random() * 1; }
-function getRandomMargin() { return (Math.random() - 0.5) * index * 35; }
+function getRandomMargin() { return (Math.random() - 0.5) * index * 25; }
 circless.forEach((circle, index) => {
     function animate() {
         gsap.to(circle, { scale: getRandomScale(), marginRight: getRandomMargin() + "px", marginTop: getRandomMargin() + "px", duration: 1 + index * 0.1, repeat: 0, ease: "power1.inOut", onComplete: animate });
@@ -19,9 +18,9 @@ circless.forEach((circle, index) => {
 });
 
 document.addEventListener('mousemove', function (event) {
-    const cursor = document.getElementById('cursor');
-    cursor.style.left = `${event.pageX}px`;
-    cursor.style.top = `${event.pageY}px`;
+    const cursorMetaboll = document.getElementById('cursor-metaboll');
+    cursorMetaboll.style.left = `${event.pageX}px`;
+    cursorMetaboll.style.top = `${event.pageY}px`;
 });
 
 const circles = [
@@ -40,8 +39,8 @@ const screenWidth = window.innerWidth;
 let speed = .75;
 screenWidth < 991 ? speed = 1 : speed = .75;
 
-let cursorX = 0,
-    cursorY = 0;
+let cursorMetabollX = 0,
+    cursorMetabollY = 0;
 
 const moveCircleAway = (e, circleData) => {
     const { circle, cord } = circleData;
@@ -50,7 +49,6 @@ const moveCircleAway = (e, circleData) => {
 
     const offsetX = circle.getBoundingClientRect().left + circle.offsetWidth / 2 - centerX;
     const offsetY = circle.getBoundingClientRect().top + circle.offsetHeight / 2 - centerY;
-    const angle = Math.atan2(offsetY, offsetX);
 
     circleData.distancex += (centerX - cord.clientX);
     circleData.distancey += (centerY - cord.clientY);
@@ -126,7 +124,7 @@ const checkCursorInRed = (e) => {
     let cursorOnCirclesRed = [];
     circles.forEach(({ circle }, index) => {
         const rect = circle.getBoundingClientRect();
-        const cursorRect2 = document.getElementById('cursor').getBoundingClientRect();
+        const cursorRect2 = document.getElementById('cursor-metaboll').getBoundingClientRect();
         const isCursorInside2 =
             cursorRect2.right >= rect.left &&
             cursorRect2.left <= rect.right &&
@@ -151,21 +149,21 @@ document.addEventListener('mousemove', (e) => {
             oo = false;
         }, 10);
     }
-    const cursor = document.getElementById('cursor');
-    cursorX = e.pageX; 
-    cursorY = e.pageY;
-    cursor.style.left = `${cursorX}px`;
-    cursor.style.top = `${cursorY}px`;
+    const cursorMetaboll = document.getElementById('cursor-metaboll');
+    cursorMetabollX = e.pageX; 
+    cursorMetabollY = e.pageY;
+    cursorMetaboll.style.left = `${cursorMetabollX}px`;
+    cursorMetaboll.style.top = `${cursorMetabollY}px`;
 });
 
 document.addEventListener('touchmove', (e) => {
     oo = true;
-    e.preventDefault();
-    const cursor = document.getElementById('cursor');
-    cursorX = e.touches[0].pageX;
-    cursorY = e.touches[0].pageY;
-    cursor.style.left = `${cursorX}px`;
-    cursor.style.top = `${cursorY}px`;
+    // e.preventDefault();
+    const cursorMetaboll = document.getElementById('cursor-metaboll');
+    cursorMetabollX = e.touches[0].pageX;
+    cursorMetabollY = e.touches[0].pageY;
+    cursorMetaboll.style.left = `${cursorMetabollX}px`;
+    cursorMetaboll.style.top = `${cursorMetabollY}px`;
 }, { passive: false });
 
 document.addEventListener('touchend', () => {
@@ -175,7 +173,7 @@ document.addEventListener('touchend', () => {
 document.body.style.overflowX = 'hidden';
 
 setInterval(() => {
-    const e = { clientX: cursorX, clientY: cursorY };
+    const e = { clientX: cursorMetabollX, clientY: cursorMetabollY };
     const cursorOnCircles = checkCursorInsideAnyCircle(e);
     const checkCursorInRed2 = checkCursorInRed(e);
     circles.forEach((circleData, index) => {
