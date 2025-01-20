@@ -12,13 +12,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500vh;
+    height: 100vh;
   }
   
   .gradient-bg {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: relative;
     overflow: hidden;
   }
   
