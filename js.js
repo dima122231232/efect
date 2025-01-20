@@ -150,8 +150,8 @@ document.addEventListener('mousemove', (e) => {
         }, 10);
     }
     const cursor = document.getElementById('cursor');
-    cursorX = e.clientX;
-    cursorY = e.clientY;
+    cursorX = e.pageX; 
+    cursorY = e.pageY;
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
 });
@@ -160,8 +160,8 @@ document.addEventListener('touchmove', (e) => {
     oo = true;
     e.preventDefault();
     const cursor = document.getElementById('cursor');
-    cursorX = e.touches[0].clientX;
-    cursorY = e.touches[0].clientY;
+    cursorX = e.touches[0].pageX;
+    cursorY = e.touches[0].pageY;
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
 }, { passive: false });
@@ -204,9 +204,8 @@ setInterval(() => {
             if (screenWidth < 911) {
                 returnCircle(circleData);
             } else {
-                if (checkCursorInRed2.includes(index)) {
-                    // No action for this condition
-                } else {
+                if (checkCursorInRed2.includes(index)) {} 
+                else {
                     returnCircle(circleData);
                 }
             }
