@@ -36,8 +36,10 @@ const circles = [
     { circle: document.querySelector('.circle9'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
     { circle: document.querySelector('.circle10'), flag: true, cord: null, distancex: 0, distancey: 0, plusKvadro: 0, canUpdatePlusKvadro: true },
 ];
-
+const screenWidth = window.innerWidth;
 let speed = .75;
+screenWidth < 991 ? speed = 1 : speed = .75;
+
 let cursorX = 0,
     cursorY = 0;
 
@@ -54,7 +56,7 @@ const moveCircleAway = (e, circleData) => {
     circleData.distancey += (centerY - cord.clientY);
 
     const screenWidth = window.innerWidth;
-    const limit = screenWidth < 991 ? index * 50 : index * 35;
+    const limit = screenWidth < 991 ? index * 35 : index * 35;
     circleData.distancex = Math.max(-limit, Math.min(limit, circleData.distancex));
     circleData.distancey = Math.max(-limit, Math.min(limit, circleData.distancey));
 
