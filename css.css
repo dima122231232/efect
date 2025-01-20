@@ -92,8 +92,9 @@
     align-items: center;
     justify-content: center;
   }
-  html, body {
+/*   html, body {
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
     will-change: transform;
 }
+ */
