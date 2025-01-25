@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200vh;
+    height: 100vh;
     overflow-x: hidden;
   }
   
@@ -71,7 +71,6 @@
     height:calc(var(--index)*8);
     border-radius: 50%;
     left: -5000px;
-    background-color: blueviolet;
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 100;
