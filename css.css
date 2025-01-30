@@ -1,4 +1,4 @@
-html, body{position: relative; overflow: hidden;background-color:#000;}
+html, body{position: relative; overflow: hidden;background-color:#000;height: 100vh;}
 :root {
     --index:calc(1vh + 1vw);
     --circle-size:calc( var(--index)*7.5);
