@@ -1,25 +1,16 @@
+html, body{position: relative;}
 :root {
     --index:calc(1vh + 1vw);
-    --circle-size:calc( var(--index)*7);
+    --circle-size:calc( var(--index)*7.5);
     --circle-color:#4cb1c2;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: #00173e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow-x: hidden;
-    position: relative;
   }
   
   .gradient-bg {
     width: 100vw;
     height: 100vh;
-    position: relative;
+    top: 0;
+    left: 0;
+    position: absolute;
     overflow: hidden;
   }
   
@@ -45,8 +36,6 @@
     border-radius: 50%;
     position: absolute;
     will-change: transform;
-    /* filter: blur(1.5px); */
-    
   }
   .circle div {
     position: absolute;
@@ -71,16 +60,11 @@
     width:calc(var(--index)*8);
     height:calc(var(--index)*8);
     border-radius: 50%;
-    left: -5000px;
     pointer-events: none;
-    transform: translate(-50%, -50%);
     z-index: 100;
     display: flex;
+    transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
   }
-  /* html, body {
-    overscroll-behavior: none;
-    -webkit-overflow-scrolling: touch;
-    will-change: transform;
-} */
+
