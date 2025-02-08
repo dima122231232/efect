@@ -2,7 +2,7 @@ html, body{position: relative; overflow: hidden;background-color:#000;height: 10
 :root {
     --index:calc(1vh + 1vw);
     --circle-size:calc( var(--index)*7.5);
-    --circle-color:#4cb1c2;
+    --circle-color:#fff;
   }
   
   .gradient-bg {
